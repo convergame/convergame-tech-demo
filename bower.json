@@ -1,0 +1,26 @@
+{
+  "name": "convergame-tech-demo",
+  "description": "A testing game demo to display all of Convergame's features. Useful for testing new or existing functionality.",
+  "main": "game.js",
+  "authors": [
+    "Convergame Creations"
+  ],
+  "license": "LGPL-3.0",
+  "keywords": [
+    "convergame",
+    "html5",
+    "gamedev",
+    "game"
+  ],
+  "homepage": "https://github.com/convergame/convergame-tech-demo",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "convergame": "*"
+  }
+}
