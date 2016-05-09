@@ -9,8 +9,8 @@ minifyHTML = require('gulp-minify-html'),
 rename = require('gulp-rename');
 
 var zip_files = ['build/game.js', 'build/index.html'], //Files to be added to the zip folder use "<directory goes here>/*" for all files inside the directory
-	js_files = [ 'convergame-engine/**/*.js', 'convergame-engine/*.js', 'game.js', '!convergame-engine/gulpfile.js', 'scenes/*', 'objects/*'], //All your JS files to be combined and minified
-	img_files = ['assets/*.png','assets/*.jpg','src/**/*.gif','assets/*.jpeg'];
+	js_files = [ 'convergame-engine/**/*.js', 'convergame-engine/*.js', 'game.js', '!convergame-engine/gulpfile.js', 'scenes/**/*.js', 'objects/**/*.js'], //All your JS files to be combined and minified
+	img_files = ['assets/*.png','assets/*.jpg','assets/*.gif','assets/*.jpeg', 'assets/**/*.png','assets/**/*.jpg','assets/**/*.gif','assets/**/*.jpeg'];
  
 //Zip up the JS/HTML required for the game
 gulp.task('zip', function () {
@@ -30,7 +30,7 @@ gulp.task('images', function(cb) {
         optimizationLevel: 5,
         progressive: true,
         interlaced: true
-    })).pipe(gulp.dest('assets')).on('end', cb).on('error', cb);
+    })).pipe(gulp.dest('build/assets')).on('end', cb).on('error', cb);
 });
 
 //Minify the HTML
@@ -64,10 +64,11 @@ gulp.task('build-dev', function() {
 gulp.task('watch', function() {
     gulp.watch('./index.unmin.html', ['build-html']);
     gulp.watch(js_files, ['build-dev']);
+    gulp.watch(img_files, ['images']);
 });
 
 //Default Task
-gulp.task('default', ['build-html', 'build-dev']);
+gulp.task('default', ['build-html', 'build-dev', 'images']);
 
 
 //Legacy 'build' alias for build-dev task
